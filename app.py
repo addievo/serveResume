@@ -7,4 +7,4 @@ def serve_pdf():
     return send_file('./resume.pdf')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5202)
+    app.run(host='0.0.0.0', port=5203)
