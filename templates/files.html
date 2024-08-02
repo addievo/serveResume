@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+    <title>Resume Files</title>
+</head>
+<body>
+    <h1>Resume Files</h1>
+    <ul>
+        <li><a href="/download/docx">Download DOCX</a></li>
+        <li><a href="/download/pdf">Download PDF</a></li>
+    </ul>
+    <h2>Upload New Files</h2>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="docx_file" accept=".docx"><br>
+        <input type="file" name="pdf_file" accept=".pdf"><br>
+        <input type="submit" value="Upload">
+    </form>
+    <br>
+    <a href="/logout">Logout</a>
+</body>
+</html>
