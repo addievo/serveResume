@@ -1,21 +1,44 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="utf-8">
     <title>Resume Files</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
+<div class="container">
     <h1>Resume Files</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <h2>Downloads</h2>
     <ul>
-        <li><a href="/download/docx">Download DOCX</a></li>
-        <li><a href="/download/pdf">Download PDF</a></li>
+        <li><a href="{{ url_for('download_file', file_type='docx') }}">Download DOCX (resume.docx)</a></li>
+        <li><a href="{{ url_for('download_file', file_type='pdf') }}">Download PDF (resume.pdf)</a></li>
     </ul>
+
     <h2>Upload New Files</h2>
-    <form action="/upload" method="post" enctype="multipart/form-data">
-        <input type="file" name="docx_file" accept=".docx"><br>
-        <input type="file" name="pdf_file" accept=".pdf"><br>
-        <input type="submit" value="Upload">
+    <form action="{{ url_for('upload_file') }}" method="post" enctype="multipart/form-data">
+        <label for="docx_file">Select a DOCX file:</label>
+        <input type="file" name="docx_file" id="docx_file" accept=".docx" required>
+
+        <label for="pdf_file">Select a PDF file:</label>
+        <input type="file" name="pdf_file" id="pdf_file" accept=".pdf" required>
+
+        <input type="submit" value="Upload Files">
     </form>
-    <br>
-    <a href="/logout">Logout</a>
+
+    <a href="{{ url_for('logout') }}" class="logout-link">Logout</a>
+</div>
 </body>
 </html>
